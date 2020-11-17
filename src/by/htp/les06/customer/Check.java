@@ -1,24 +1,22 @@
-package by.htp.les06.main;
+package by.htp.les06.customer;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class Check  {
+public class Check {
 
     private List<Customer> shoppingList;
 
     public Check() {
-        List<Customer> shoppingList = new ArrayList<>();
-        this.shoppingList = shoppingList;
+        shoppingList = new ArrayList<>();
+
     }
 
-    public void add(Customer customer){
+    public void add(Customer customer) {
         this.shoppingList.add(customer);
-        Collections.sort(this.shoppingList);
     }
 
-    public void remove(Customer customer){
+    public void remove(Customer customer) {
         this.shoppingList.remove(customer);
 
     }

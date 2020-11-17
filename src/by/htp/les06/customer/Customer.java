@@ -1,5 +1,7 @@
-package by.htp.les06.main;
+package by.htp.les06.customer;
 
+
+import java.util.Objects;
 
 public class Customer implements Comparable<Customer> {
     private Integer id;
@@ -7,20 +9,21 @@ public class Customer implements Comparable<Customer> {
     private String firstName;
     private String lastName;
     private String pseudonym;
-    private final static String THE_ADDRESS = "Soviet 236/2";
+    private String THE_ADDRESS = "Soviet 236/2";
     private Integer cardNumber;
     private Integer bankAccountNumber;
 
 
-    public Customer(String firstName, String lastName,Integer cardNumber) {
+    public Customer(String firstName, String lastName, Integer cardNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.cardNumber = cardNumber;
-        if (this.cardNumber>9999 || this.cardNumber<0){
-            this.cardNumber = null;
-        }
 
         this.id = idCounter++;
+    }
+
+    public Customer() {
+
     }
 
 
@@ -52,7 +55,7 @@ public class Customer implements Comparable<Customer> {
         this.pseudonym = pseudonym;
     }
 
-    public static String getTheAddress() {
+    public String getTheAddress() {
         return THE_ADDRESS;
     }
 
@@ -92,5 +95,24 @@ public class Customer implements Comparable<Customer> {
         } else {
             return resultOfCompareFirstName;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(id, customer.id) &&
+                Objects.equals(firstName, customer.firstName) &&
+                Objects.equals(lastName, customer.lastName) &&
+                Objects.equals(pseudonym, customer.pseudonym) &&
+                Objects.equals(THE_ADDRESS, customer.THE_ADDRESS) &&
+                Objects.equals(cardNumber, customer.cardNumber) &&
+                Objects.equals(bankAccountNumber, customer.bankAccountNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, pseudonym, THE_ADDRESS, cardNumber, bankAccountNumber);
     }
 }
